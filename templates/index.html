@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<div class="d-flex justify-content-center text-center">
+        <form action="/sort" method="get">
+            <select name="sort_type" class="form-select">
+                <!--Add nav bar when news is selected for user to select from interests-->
+                <option selected disabled>Sort By</option>
+                <option value ="recent">Recent</option>
+                <option value="likes">Likes</option>
+                <option value="dislikes">Dislikes</option>
+            </select>
+        <button class="btn btn-info" type="submit">Sort</button>
+    </form>
+</div>
+
+<div class="text-center">
+    <form action="/post" method="post">
+        <div class="post_textarea">
+            <textarea cols="30" rows="3" id="post_text" name="post_text" placeholder="Got something to say?"></textarea>
+        </div>
+            <button class="btn btn-info" type="submit">Post</button>
+    </form>
+</div>
+
+{% for post in posts %}
+<div class="post_view">
+    <h2>{{ post_dates[post.post_id] }}</h2>
+
+        <form class="profile_link" action="/visit_profile" method="get">
+            <button class="profile_button" name="username" value="{{ post.username }}">@{{ post.username }}:<span class="visit_profiletooltip">Visit {{post.username}}'s Profile</span></button>
+            <p>{{ post.post_text }}</p>
+        </form>
+        {% if post.user_id == user_id %}
+            <form action="/delete_post" method="post">
+                <button type="submit" class="btn btn-danger delete_button" name="post_id" value="{{ post.post_id }}">Delete Post</button>
+            </form>
+        {% endif %}
+</div>
+<div class="like_buttons">
+    <form action="/like" method="post">
+            <button class="like_button" name="like_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart"></i><span class="like_buttontooltip">Like</span></button>{{ post.likes }}
+        </form>
+
+        <form action="/dislike" method="post">
+            <button class="dislike_button" name="dislike_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart-crack"></i><span class="dislike_buttontooltip">Dislike</span></button> {{ post.dislikes }}
+        </form>
+    </div>
+<hr>
+{% endfor %}
+{% endblock %}

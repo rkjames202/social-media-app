@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{Profile}}
+{% endblock %}
+
+{% block main %}
+<!--TODO: Display username, bio, button to change pass, username and edit bio-->
+<div class="profile_nav">
+    <ul class="profile_nav">
+        <li><button type="button" class="btn btn-light" id="profile">My profile</button></li>
+        <li><button type="button" class="btn btn-light" id="liked_posts">Liked Posts</button></li>
+        <li><button type="button" class="btn btn-light" id="disliked_posts">Disliked Posts</button></li>
+        <li><button type="button" class="btn btn-light" id="posts">My Posts</button></li>
+    </ul>
+</div>
+<div class="profile_view">
+    <form action ="/update_profile" method="post">
+        <table>
+            <tr>
+                <th><u><h3>{{ user_info.username }} </h3></u></th>
+            </tr>
+            <tr>
+                <td><h4>Username: <input autocomplete="off" id="username" name="username" value="{{user_info.username}}" type="text"></h4></td>
+            </tr>
+            <tr>
+                <td><h4>First Name: <input autocomplete="off" id="first_name" name="first_name" value="{{ user_info.first_name }}" type="text"></h4></td>
+            </tr>
+            <tr>
+                <td><h4>Last Name: <input autocomplete="off" id="last_name" name="last_name" value="{{ user_info.last_name }}" type="text"></h4></td>
+            </tr>
+            <tr>
+                <td><h4>Favorite Color: <input autocomplete="off" id="fav_color" name="fav_color" value="{{ user_info.favorite_color}}" type="text"></h4></td>
+            </tr>
+            <tr>
+                <td><h4>Favorite Food: <input autocomplete="off" id="fav_food" name="fav_food" value="{{ user_info.favorite_food}}" type="text"></h4></td>
+            </tr>
+            <tr>
+                <td ><h4>Bio:</h4><textarea cols="30" rows="3" id="bio" name="bio">{{ user_info.bio }}</textarea></td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" type="submit">Update Profile</button>
+    </form>
+</div>
+<div class="profile_liked">
+{% for post in liked_posts %}
+<div class="post_view">
+    <h2>{{ liked_dates[post.post_id] }}</h2>
+    <form class="profile_link" action="/visit_profile" method="get">
+        <button class="profile_button" name="username" value="{{ post.username }}">@{{ post.username }}<span class="visit_profiletooltip">Visit {{ post.username }}'s Profile</span></button>:
+        <p>{{ post.post_text }}</p>
+    </form>
+    {% if post.user_id == user_id %}
+        <form class="delete_button" action="/delete_post" method="post">
+            <button type="submit" class="btn btn-danger" name="post_id" value="{{ post.post_id }}">Delete Post</button>
+        </form>
+    {% endif %}
+    </div>
+    <div class="like_buttons" >
+        <form action="/like" method="post">
+            <button class="like_button" name="like_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart"></i><span class="like_buttontooltip">Like</span></button>{{ post.likes }}
+        </form>
+        <form class="like_buttons" action="/dislike" method="post">
+            <button class="dislike_button" name="dislike_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart-crack"></i><span class="dislike_buttontooltip">Dislike</span></button> {{ post.dislikes }}
+        </form>
+</div>
+<hr>
+{% endfor %}
+</div>
+
+<div class="profile_disliked">
+{% for post in disliked_posts %}
+<div class="post_view">
+    <h2>{{ disliked_dates[post.post_id] }}</h2>
+    <form class="profile_link" action="/visit_profile" method="get">
+        <button class="profile_button" name="username" value="{{ post.username }}">@{{ post.username }}<span class="visit_profiletooltip">Visit {{ post.username }}'s Profile</span></button>:
+        <p>{{ post.post_text }}</p>
+    </form>
+    {% if post.user_id == user_id %}
+    <form class="delete_button" action="/delete_post" method="post">
+        <button type="submit" class="btn btn-danger" name="post_id" value="{{ post.post_id }}">Delete Post</button>
+    </form>
+    {% endif %}
+</div>
+<div class="like_buttons" >
+    <form action="/like" method="post">
+        <button class="like_button" name="like_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart"></i><span class="like_buttontooltip">Like</span></button>{{ post.likes }}
+    </form>
+    <form class="like_buttons" action="/dislike" method="post">
+        <button class="dislike_button" name="dislike_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart-crack"></i><span class="dislike_buttontooltip">Dislike</span></button> {{ post.dislikes }}
+    </form>
+</div>
+<hr>
+{% endfor %}
+</div>
+
+<div class="profile_posts">
+{% for post in user_posts %}
+<div class="post_view">
+    <h2>{{ post_dates[post.post_id] }}</h2>
+    <form class="profile_link" action="/visit_profile" method="get">
+        <button class="profile_button" name="username" value="{{ post.username }}">@{{ post.username }}<span class="visit_profiletooltip">Visit {{ post.username }}'s Profile</span></button>:
+        <p>{{ post.post_text }}</p>
+    </form>
+    {% if post.user_id == user_id %}
+    <form class="delete_button" action="/delete_post" method="post">
+        <button type="submit" class="btn btn-danger" name="post_id" value="{{ post.post_id }}">Delete Post</button>
+    </form>
+    {% endif %}
+</div>
+<div class="like_buttons" >
+    <form action="/like" method="post">
+        <button class="like_button" name="like_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart"></i><span class="like_buttontooltip">Like</span></button>{{ post.likes }}
+    </form>
+    <form class="like_buttons" action="/dislike" method="post">
+        <button class="dislike_button" name="dislike_button" value={{post.post_id}} type="submit"><i class="fa-solid fa-heart-crack"></i><span class="dislike_buttontooltip">Dislike</span></button> {{ post.dislikes }}
+    </form>
+</div>
+<hr>
+{% endfor %}
+</div>
+
+{% endblock %}

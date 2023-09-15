@@ -1,0 +1,164 @@
+body{
+
+    background: #131516;
+    color: #d8d4cf;
+
+}
+
+.form-select
+{
+    border-color: #131516;
+    width: auto;
+}
+
+.post_textarea{
+    display: block;
+    font-size: 14pt;
+    margin-top: 42px;
+
+}
+
+i[class *= fa-heart]::before{
+    background: transparent;
+    color: #f446fa;
+
+}
+
+
+
+.like_button:hover .like_buttontooltip {
+
+    display: block;
+
+}
+
+.dislike_button:hover .dislike_buttontooltip{
+    display: block;
+}
+
+.profile_button:hover .visit_profiletooltip{
+    display: block;
+}
+
+.like_buttontooltip {
+
+    font-size: 14pt;
+    display:none;
+    background: #C8C8C8;
+    margin-left: 28px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+}
+
+.visit_profiletooltip{
+    font-size: 14pt;
+    color: black;
+    display:none;
+    background: #C8C8C8;
+    margin-left: 28px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+}
+
+.dislike_buttontooltip{
+    font-size: 14pt;
+    display:none;
+    background: #C8C8C8;
+    margin-left: 28px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+}
+
+.like_buttons{
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+
+}
+
+.delete_button{
+
+    margin-bottom: 10px;
+
+}
+
+.profile_view{
+    display: flex;
+    flex: 0 0 25 em;
+    justify-content: center;
+}
+
+
+.profile_nav{
+    display:flex;
+    justify-content: center;
+}
+
+.profile_nav li{
+    margin: 0 5px;
+    display: inline-block;
+    font-size: 3rem;
+}
+
+.profile_liked{
+    display: none;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.profile_disliked{
+    display: none;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.profile_posts{
+    display:none;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.profile_button{
+
+    background: none;
+    border: none;
+    color: white;
+
+}
+
+.profile_link{
+    display:inline;
+    font-size: 2 em;
+}
+
+.profile_button:hover{
+    text-decoration: underline;
+}
+
+.bio{
+    word-wrap: break-word;
+    width: 500px;
+}
+
+.post_view{
+    text-align: center;
+    word-wrap: break-word;
+    margin-top: 42px;
+    font-size: 28px;
+}
+
+textarea{
+    resize: none;
+}
