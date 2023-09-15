@@ -55,5 +55,3 @@ When making this project there were a couple of features I had in mind but I ult
 2. Implementing a news API, having the user select from a list of interests and displaying any news that pertained to the user's selected interests.
 
  At first I told myself I would implement these two features after the application was in the state that it's currently in. But, I decided to do without these two features because I believed that an application of this scale probably wouldn't need this. The news API just didn't fit into what I had in mind and following other users didn't seem necessary since they are so little users you could just do a search or visit a user's profile to see any posts made by them.
-
- **P.S, this is my first README file so I apologize if it looks kind of rough. Thanks to everyone behind making CS50 a great course!**
